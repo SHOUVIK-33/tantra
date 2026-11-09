@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>अखिल भारतीय विद्यार्थी परिषद (ABVP) - सदस्यता पोर्टल</title>
+  <style>
+    :root {
+      --saffron: #FF671F;
+      --saffron-dark: #E65100;
+      --navy: #0A1931;
+      --navy-light: #152C53;
+      --gold: #FFB300;
+      --light-bg: #F8F9FA;
+      --text-dark: #1E293B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    /* Top Strip */
+    .top-strip {
+      background: var(--navy);
+      color: white;
+      padding: 6px 20px;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .motto-badge {
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(135deg, var(--saffron) 0%, #FF8533 100%);
+      color: white;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      font-size: 2.2rem;
+      background: white;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .brand h1 {
+      font-size: 1.35rem;
+      line-height: 1.1;
+      font-weight: 800;
+    }
+
+    .brand span {
+      font-size: 0.8rem;
+      opacity: 0.95;
+      font-weight: 500;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: white;
+      color: var(--saffron-dark);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--navy);
+      color: white;
+    }
+
+    .nav-btn.logout {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(rgba(10, 25, 49, 0.92), rgba(10, 25, 49, 0.92));
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      border-bottom: 5px solid var(--saffron);
+    }
+
+    .hero h2 {
+      font-size: 2.1rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      max-width: 650px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Container */
+    .container {
+      max-width: 650px;
+      margin: 30px auto;
+      padding: 0 16px;
+      margin-bottom: 60px;
+    }
+
+    /* Forms */
+    .card-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      border-top: 5px solid var(--saffron);
+    }
+
+    .card-box h3 {
+      text-align: center;
+      color: var(--navy);
+      font-size: 1.4rem;
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #334155;
+    }
+
+    .form-group input, 
+    .form-group select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .form-group input:focus, 
+    .form-group select:focus {
+      border-color: var(--saffron);
+      box-shadow: 0 0 0 3px rgba(255, 103, 31, 0.15);
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--saffron);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: var(--saffron-dark);
+    }
+
+    .alert {
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+    }
+    .alert-error {
+      background: #fef2f2;
+      color: #991b1b;
+      border-left: 4px solid #ef4444;
+    }
+    .alert-success {
+      background: #f0fdf4;
+      color: #166534;
+      border-left: 4px solid #22c55e;
+    }
+
+    .switch-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+
+    .switch-link a {
+      color: var(--saffron);
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* DIGITAL MEMBERSHIP ID CARD */
+    .id-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .id-card {
+      width: 100%;
+      max-width: 440px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      overflow: hidden;
+      border: 2px solid #e2e8f0;
+      position: relative;
+    }
+
+    .id-header {
+      background: linear-gradient(135deg, var(--saffron), #ff8533);
+      color: white;
+      text-align: center;
+      padding: 16px 12px;
+    }
+
+    .id-header h4 {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .id-header p {
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    .id-sub-tag {
+      display: inline-block;
+      margin-top: 6px;
+      background: var(--navy);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .id-body {
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .id-avatar {
+      width: 95px;
+      height: 115px;
+      background: #f1f5f9;
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 0.75rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .id-avatar span {
+      font-size: 1.8rem;
+    }
+
+    .id-info {
+      font-size: 0.85rem;
+      color: #1e293b;
+      width: 100%;
+    }
+
+    .id-info p {
+      margin-bottom: 5px;
+    }
+
+    .id-num-box {
+      background: #fff7ed;
+      border: 1px dashed var(--saffron);
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+
+    .id-number {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--saffron-dark);
+    }
+
+    .id-footer {
+      background: var(--navy);
+      color: var(--gold);
+      text-align: center;
+      padding: 9px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .print-button {
+      margin-top: 22px;
+      background: var(--navy);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .print-button:hover {
+      background: #1e3a5f;
+    }
+
+    /* Print Style */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printable-id-card, #printable-id-card * {
+        visibility: visible;
+      }
+      #printable-id-card {
+        position: absolute;
+        left: 50%;
+        top: 20%;
+        transform: translate(-50%, 0);
+        box-shadow: none;
+        border: 1px solid #000;
+      }
+      .print-button, .navbar, .top-strip, .hero {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-strip">
+    <span>🚩 विश्व का सबसे बड़ा छात्र संगठन</span>
+    <span class="motto-badge">ज्ञान • शील • एकता</span>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="brand">
+      <div class="brand-logo">🚩</div>
+      <div>
+        <h1>अखिल भारतीय विद्यार्थी परिषद</h1>
+        <span>Akhil Bharatiya Vidyarthi Parishad</span>
+      </div>
+    </div>
+    <div class="nav-buttons" id="nav-buttons">
+      <!-- Buttons injected by JS -->
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <h2>छात्र शक्ति - राष्ट्र शक्ति</h2>
+    <p>राष्ट्रीय पुनर्निर्माण के संकल्प के साथ भारत के सबसे बड़े छात्र आन्दोलन से जुड़ें।</p>
+  </section>
+
+  <!-- Main Container -->
+  <main class="container">
+    <div id="alert-box"></div>
+
+    <!-- Registration Section -->
+    <div id="register-section" class="card-box">
+      <h3>सदस्यता पंजीकरण (New Membership Form)</h3>
+      <form id="reg-form">
+        <div class="form-group">
+          <label>पूरा नाम (Full Name) *</label>
+          <input type="text" id="reg-name" placeholder="उदा. राहुल शर्मा" required>
+        </div>
+
+        <div class="form-group">
+          <label>ईमेल पता (Email) *</label>
+          <input type="email" id="reg-email" placeholder="student@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>मोबाइल नंबर (WhatsApp / Phone) *</label>
+          <input type="tel" id="reg-phone" placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" required>
+        </div>
+
+        <div class="form-group">
+          <label>प्रान्त / राज्य (State / Prant) *</label>
+          <select id="reg-prant" required>
+            <option value="दिल्ली">दिल्ली (Delhi)</option>
+            <option value="काशी (उत्तर प्रदेश)">काशी (उत्तर प्रदेश)</option>
+            <option value="गोरक्ष (उत्तर प्रदेश)">गोरक्ष (उत्तर प्रदेश)</option>
+            <option value="अवध (उत्तर प्रदेश)">अवध (उत्तर प्रदेश)</option>
+            <option value="मेरठ (उत्तर प्रदेश)">मेरठ (उत्तर प्रदेश)</option>
+            <option value="बिहार">बिहार (Bihar)</option>
+            <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+            <option value="महाराष्ट्र">महाराष्ट्र (Maharashtra)</option>
+            <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+            <option value="गुजरात">गुजरात (Gujarat)</option>
+            <option value="उत्तराखंड">उत्तराखंड (Uttarakhand)</option>
+            <option value="झारखण्ड">झारखण्ड (Jharkhand)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>महाविद्यालय / विश्वविद्यालय (College / University) *</label>
+          <input type="text" id="reg-college" placeholder="उदा. दिल्ली विश्वविद्यालय / BHU" required>
+        </div>
+
+        <div class="form-group">
+          <label>कक्षा / कोर्स (Class / Course) *</label>
+          <input type="text" id="reg-course" placeholder="उदा. B.A., B.Tech, M.Com, LLB" required>
+        </div>
+
+        <div class="form-group">
+          <label>गुप्त पासवर्ड बनाएं (Create Password) *</label>
+          <input type="password" id="reg-password" placeholder="कम से कम 6 अक्षर" minlength="6" required>
+        </div>
+
+        <div class="form-group">
+          <label>पासवर्ड की पुष्टि करें (Confirm Password) *</label>
+          <input type="password" id="reg-cpassword" placeholder="पासवर्ड दोबारा दर्ज करें" required>
+        </div>
+
+        <button type="submit" class="submit-btn">सदस्य बनें (Register Now)</button>
+      </form>
+      <div class="switch-link">
+        पहले से पंजीकृत हैं? <a onclick="showView('login')">यहाँ लॉगिन करें</a>
+      </div>
+    </div>
+
+    <!-- Login Section -->
+    <div id="login-section" class="card-box" style="display: none;">
+      <h3>सदस्य लॉगिन (Member Login)</h3>
+      <form id="login-form">
+        <div class="form-group">
+          <label>ईमेल / मोबाइल नंबर / सदस्यता ID</label>
+          <input type="text" id="login-id" placeholder="ईमेल या मोबाइल या ID दर्ज करें" required>
+        </div>
+
+        <div class="form-group">
+          <label>पासवर्ड (Password)</label>
+          <input type="password" id="login-pass" placeholder="पासवर्ड दर्ज करें" required>
+        </div>
+
+        <button type="submit" class="submit-btn">लॉगिन करें (Sign In)</button>
+      </form>
+      <div class="switch-link">
+        नए सदस्य हैं? <a onclick="showView('register')">नया पंजीकरण करें</a>
+      </div>
+    </div>
+
+    <!-- ID Card Section -->
+    <div id="card-section" class="id-wrapper" style="display: none;">
+      <div class="id-card" id="printable-id-card">
+        <div class="id-header">
+          <h4>अखिल भारतीय विद्यार्थी परिषद</h4>
+          <p>AKHIL BHARATIYA VIDYARTHI PARISHAD</p>
+          <div class="id-sub-tag">डिजिटल सदस्यता प्रमाण पत्र</div>
+        </div>
+
+        <div class="id-body">
+          <div class="id-avatar">
+            <span>👤</span>
+            <div>छात्र फोटो</div>
+          </div>
+
+          <div class="id-info">
+            <div class="id-num-box">
+              <span style="font-size:0.75rem; color:#666;">सदस्यता क्रमांक:</span><br>
+              <span class="id-number" id="card-mem-id">ABVP-2026-000000</span>
+            </div>
+            <p><strong>नाम:</strong> <span id="card-name">-</span></p>
+            <p><strong>प्रान्त:</strong> <span id="card-prant">-</span></p>
+            <p><strong>संस्थान:</strong> <span id="card-college">-</span></p>
+            <p><strong>कोर्स:</strong> <span id="card-course">-</span></p>
+            <p><strong>संपर्क:</strong> <span id="card-phone">-</span></p>
+          </div>
+        </div>
+
+        <div class="id-footer">
+          ज्ञान, शील और एकता • राष्ट्रीय पुनर्निर्माण
+        </div>
+      </div>
+
+      <button onclick="window.print()" class="print-button">
+        🖨️ सदस्यता कार्ड प्रिंट / डाउनलोड करें (Print Card)
+      </button>
+    </div>
+  </main>
+
+  <!-- Script for Handling Database, Auth, ID Generation -->
+  <script>
+    // LocalStorage DB Initialization
+    let members = JSON.parse(localStorage.getItem('abvp_members')) || [];
+    let currentUser = JSON.parse(localStorage.getItem('abvp_current_user')) || null;
+
+    const alertBox = document.getElementById('alert-box');
+
+    function showAlert(msg, type = 'error') {
+      alertBox.innerHTML = `<div class="alert alert-${type}">${msg}</div>`;
+      setTimeout(() => { alertBox.innerHTML = ''; }, 4500);
+    }
+
+    function renderNav() {
+      const navButtons = document.getElementById('nav-buttons');
+      if (currentUser) {
+        navButtons.innerHTML = `
+          <button class="nav-btn" onclick="showView('card')">मेरी सदस्यता (ID)</button>
+          <button class="nav-btn logout" onclick="logout()">लॉगआउट</button>
+        `;
+      } else {
+        navButtons.innerHTML = `
+          <button class="nav-btn" onclick="showView('register')">पंजीकरण</button>
+          <button class="nav-btn" onclick="showView('login')">लॉगिन</button>
+        `;
+      }
+    }
+
+    function showView(view) {
+      document.getElementById('register-section').style.display = 'none';
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('card-section').style.display = 'none';
+
+      if (view === 'register') {
+        document.getElementById('register-section').style.display = 'block';
+      } else if (view === 'login') {
+        document.getElementById('login-section').style.display = 'block';
+      } else if (view === 'card' && currentUser) {
+        document.getElementById('card-section').style.display = 'flex';
+        fillCardData(currentUser);
+      }
+      renderNav();
+    }
+
+    function fillCardData(user) {
+      document.getElementById('card-mem-id').innerText = user.membershipId;
+      document.getElementById('card-name').innerText = user.name;
+      document.getElementById('card-prant').innerText = user.prant;
+      document.getElementById('card-college').innerText = user.college;
+      document.getElementById('card-course').innerText = user.course;
+      document.getElementById('card-phone').innerText = user.phone;
+    }
+
+    // Register Handler
+    document.getElementById('reg-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim().toLowerCase();
+      const phone = document.getElementById('reg-phone').value.trim();
+      const prant = document.getElementById('reg-prant').value;
+      const college = document.getElementById('reg-college').value.trim();
+      const course = document.getElementById('reg-course').value.trim();
+      const password = document.getElementById('reg-password').value;
+      const cpassword = document.getElementById('reg-cpassword').value;
+
+      if (password !== cpassword) {
+        return showAlert('पासवर्ड और कन्फर्म पासवर्ड एक जैसे नहीं हैं!');
+      }
+
+      // Check existing
+      const exists = members.find(m => m.email === email || m.phone === phone);
+      if (exists) {
+        return showAlert('यह ईमेल या मोबाइल नंबर पहले से पंजीकृत है!');
+      }
+
+      // Generate Unique ID
+      const randomNum = Math.floor(100000 + Math.random() * 900000);
+      const membershipId = `ABVP-2026-${randomNum}`;
+
+      const newMember = {
+        membershipId,
+        name,
+        email,
+        phone,
+        prant,
+        college,
+        course,
+        password // In production, backend hashes this with bcrypt
+      };
+
+      members.push(newMember);
+      localStorage.setItem('abvp_members', JSON.stringify(members));
+
+      // Login immediately
+      currentUser = newMember;
+      localStorage.setItem('abvp_current_user', JSON.stringify(currentUser));
+
+      showAlert('बधाई हो! आपकी ABVP सदस्यता सफलतापूर्वक पंजीकृत हो गई है।', 'success');
+      showView('card');
+      this.reset();
+    });
+
+    // Login Handler
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const id = document.getElementById('login-id').value.trim().toLowerCase();
+      const pass = document.getElementById('login-pass').value;
+
+      const user = members.find(m => 
+        (m.email.toLowerCase() === id || m.phone === id || m.membershipId.toLowerCase() === id) &&
+        m.password === pass
+      );
+
+      if (user) {
+        currentUser = user;
+        localStorage.setItem('abvp_current_user', JSON.stringify(currentUser));
+        showAlert('लॉगिन सफल रहा!', 'success');
+        showView('card');
+        this.reset();
+      } else {
+        showAlert('गलत आईडी या पासवर्ड! कृपया दोबारा जांचें।');
+      }
+    });
+
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem('abvp_current_user');
+      showAlert('आप सफलतापूर्वक लॉगआउट हो गए हैं।', 'success');
+      showView('login');
+    }
+
+    // Startup
+    if (currentUser) {
+      showView('card');
+    } else {
+      showView('register');
+    }
+  </script>
+</body>
+</html>
